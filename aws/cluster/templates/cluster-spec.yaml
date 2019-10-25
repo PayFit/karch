@@ -78,7 +78,7 @@ ${apiserver-runtime-config}
       leaderElect: true
     logLevel: ${log-level}
     useServiceAccountCredentials: true
-    horizontalPodAutoscalerSyncPerdiod: ${hpa-sync-period}
+    horizontalPodAutoscalerSyncPeriod: ${hpa-sync-period}
     horizontalPodAutoscalerDownscaleDelay: ${hpa-scale-down-delay}
     horizontalPodAutoscalerUpscaleDelay: ${hpa-scale-up-delay}
     featureGates:
