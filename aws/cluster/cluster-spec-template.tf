@@ -186,7 +186,7 @@ data "template_file" "networking-config" {
   template = <<EOF
 ${
   var.container-networking == "calico" ?
-  indent(6, "\ncrossSubnet: true\nprometheusMetricsEnabled: true \nprometheusGoMetricsEnabled: true\nprometheusProcessMetricsEnabled: true\nmajorVersion: v3\n")
+  indent(6, "\ncrossSubnet: true\nprometheusMetricsEnabled: true \nprometheusGoMetricsEnabled: true\nprometheusProcessMetricsEnabled: true\nmajorVersion: v3\ntyphaReplicas: 3\n")
   : ""
 }
 EOF
