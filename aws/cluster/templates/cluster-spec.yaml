@@ -34,7 +34,6 @@ ${etcd-clusters}
     - DefaultTolerationSeconds
     - MutatingAdmissionWebhook
     - ResourceQuota
-    - Initializers
     - NodeRestriction
     - Priority
     - PersistentVolumeClaimResize
@@ -62,9 +61,7 @@ ${oidc-config}
     runtimeConfig:
 ${apiserver-runtime-config}
     featureGates:
-      ExperimentalCriticalPodAnnotation: "true"
       ExpandPersistentVolumes: "true"
-      Initializers: "true"
       PodPriority: "true"
   kubeControllerManager:
     allocateNodeCIDRs: true
@@ -82,9 +79,7 @@ ${apiserver-runtime-config}
     horizontalPodAutoscalerDownscaleDelay: ${hpa-scale-down-delay}
     horizontalPodAutoscalerUpscaleDelay: ${hpa-scale-up-delay}
     featureGates:
-      ExperimentalCriticalPodAnnotation: "true"
       ExpandPersistentVolumes: "true"
-      Initializers: "true"
       PodPriority: "true"
 
   kubeDNS:
@@ -129,9 +124,7 @@ ${apiserver-runtime-config}
       memory: "${system-reserved-memory}"
     enforceNodeAllocatable: "pods"
     featureGates:
-      ExperimentalCriticalPodAnnotation: "true"
       ExpandPersistentVolumes: "true"
-      Initializers: "true"
       PodPriority: "true"
   kubernetesApiAccess:
 ${trusted-cidrs}
