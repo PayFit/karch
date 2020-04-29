@@ -102,7 +102,6 @@ ${apiserver-runtime-config}
       leaderElect: true
     logLevel: ${log-level}
   kubelet:
-    allowPrivileged: true
     cgroupRoot: /
     cloudProvider: aws
     clusterDNS: 100.64.0.10
