@@ -130,7 +130,6 @@ ${trusted-cidrs}
   kubernetesVersion: ${kubernetes-version}
   masterInternalName: api.internal.${cluster-name}
   masterKubelet:
-    allowPrivileged: true
     cgroupRoot: /
     cloudProvider: aws
     clusterDNS: 100.64.0.10
