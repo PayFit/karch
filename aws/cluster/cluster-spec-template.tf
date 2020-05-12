@@ -40,12 +40,24 @@ data "template_file" "cluster-spec" {
   - etcdMembers:
 ${join("\n", data.template_file.etcd-member.*.rendered)}
     name: main
+    manager:
+      env:
+      - name: ETCD_LISTEN_METRICS_URLS
+        value: http://__address__:8081
+      - name: ETCD_METRICS
+        value: basic
     enableEtcdTLS: ${var.etcd-enable-tls ? "true" : "false"}
     version: ${var.etcd-version}
     provider: ${var.etcd-enable-manager ? "Manager" : "Legacy"}
   - etcdMembers:
 ${join("\n", data.template_file.etcd-member.*.rendered)}
     name: events
+    manager:
+      env:
+      - name: ETCD_LISTEN_METRICS_URLS
+        value: http://__address__:8081
+      - name: ETCD_METRICS
+        value: basic
     enableEtcdTLS: ${var.etcd-enable-tls}
     version: ${var.etcd-version}
     provider: ${var.etcd-enable-manager ? "Manager" : "Legacy"}
