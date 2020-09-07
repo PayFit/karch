@@ -17,7 +17,7 @@ EOF
     type                    = var.type
     max-size                = var.max-size
     min-size                = var.min-size
-    role                    = "Node"
+    role                    = var.role
     volume-size             = var.volume-size
     volume-provisioned-iops = var.volume-provisioned-iops == "" ? "" : var.volume-provisioned-iops
     volume-type             = var.volume-type
