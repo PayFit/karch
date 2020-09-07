@@ -30,6 +30,13 @@ variable "name" {
   description = "The name of the instance group"
 }
 
+variable "role" {
+  type        = string
+  default     = "Node"
+  description = "Node role so we can get the node role with a `kgno` and without having to check on AWS."
+}
+
+
 variable "kops-state-bucket" {
   type        = "string"
   description = ""
