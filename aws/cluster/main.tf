@@ -12,13 +12,22 @@ ${join("\n---\n", concat(
 ))}
 EOF
 
+  depends_on = [aws_route53_record.cluster-root, aws_vpc.main, null_resource.cluster-destroy]
+}
+
+resource "null_resource" "cluster-destroy" {
+  triggers = {
+    nodeup-url-env = var.nodeup-url-env
+    aws-profile = var.aws-profile
+    kops-state-bucket = var.kops-state-bucket
+    cluster-name = var.cluster-name
+  }
+
   // On destroy, remove the cluster first, if it exists
   provisioner "local-exec" {
     when    = "destroy"
-    command = "(test -z \"$(${var.nodeup-url-env} AWS_SDK_LOAD_CONFIG=1 AWS_PROFILE=${var.aws-profile} kops --state=s3://${var.kops-state-bucket} get cluster | grep ${var.cluster-name})\" ) || ${var.nodeup-url-env} AWS_SDK_LOAD_CONFIG=1 AWS_PROFILE=${var.aws-profile} kops --state=s3://${var.kops-state-bucket} delete cluster --yes ${var.cluster-name}"
+    command = "(test -z \"$(${self.triggers.nodeup-url-env} AWS_SDK_LOAD_CONFIG=1 AWS_PROFILE=${self.triggers.aws-profile} kops --state=s3://${self.triggers.kops-state-bucket} get cluster | grep ${self.triggers.cluster-name})\" ) || ${self.triggers.nodeup-url-env} AWS_SDK_LOAD_CONFIG=1 AWS_PROFILE=${self.triggers.aws-profile} kops --state=s3://${self.triggers.kops-state-bucket} delete cluster --yes ${self.triggers.cluster-name}"
   }
-
-  depends_on = [aws_route53_record.cluster-root, aws_vpc.main]
 }
 
 // Cluster create-time provisioner
