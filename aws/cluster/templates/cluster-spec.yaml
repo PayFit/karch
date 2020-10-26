@@ -63,6 +63,7 @@ ${apiserver-runtime-config}
     featureGates:
       ExpandPersistentVolumes: "true"
       PodPriority: "true"
+      TTLAfterFinished: "true"
   kubeControllerManager:
     allocateNodeCIDRs: true
     attachDetachReconcileSyncPeriod: 1m0s
@@ -81,6 +82,7 @@ ${apiserver-runtime-config}
     featureGates:
       ExpandPersistentVolumes: "true"
       PodPriority: "true"
+      TTLAfterFinished: "true"
 
   kubeDNS:
     provider: ${dns-provider}
